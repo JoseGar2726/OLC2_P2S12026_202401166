@@ -53,6 +53,10 @@
         private $mainCount = 0;
         public $semanticErrors = [];
 
+        public function getFunctionsTabla() {
+            return $this->functions;
+        }
+
         //manejo de errores semanticos
         public function addSemanticErrors($msg, $ctx){
 

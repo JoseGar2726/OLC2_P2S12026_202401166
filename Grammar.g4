@@ -327,7 +327,7 @@ COMENTARIO_LINEA
     ;
 
 COMENTARIO_BLOQUE
-    : '/*' .*? '*/' -> skip
+    : '/*' .*? '*/'-> skip
     ;
 
 WS

@@ -201,12 +201,13 @@
 
                 $interpreter = new Interpreter();
                 
-                if (empty($errors) && empty($syntaxErrors)) {
+                if (true) {
                     //Analisis Semantico e Interprete
                     $interpreter->visit($tree);
                     $output = $interpreter->console;
 
                     $generator = new Arm64Generator();
+                    $generator->setFunctionsTabla($interpreter->getFunctionsTabla());
                     $generator->visit($tree);
                     $arm64Output = $generator->getAssembly();
                     
@@ -496,6 +497,7 @@
 
     limpiarBtn.addEventListener("click", () => {
         consolaSalida.innerHTML = "";
+        arm64Contenido.innerHTML = "";
     });
 
     nuevoBtn.addEventListener("click", () => {
@@ -538,7 +540,7 @@
             return;
         }
 
-        const blob = new Blob([text], {type: "text/plain"});
+        const blob = new Blob([text + "\n"], {type: "text/plain"});
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = "codigo.s";
