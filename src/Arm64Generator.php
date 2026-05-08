@@ -10,6 +10,7 @@ use Context\DeclaracionConstContext;
 use Context\DeclaracionContext;
 use Context\DeclaracionCortaContext;
 use Context\ExpForContext;
+use Context\ExpresionModificacionContext;
 use Context\ForClasicoContext;
 use Context\FuncionContext;
 use Context\FuncionImprimirContext;
@@ -2120,6 +2121,38 @@ use Context\TypeFuncContext;
             }
 
             return ["type" => $tipo, "reg" => $reg];
+        }
+
+        //EXPRESION MODIFICACION
+        public function visitExpresionModificacion(ExpresionModificacionContext $ctx){
+            $valor = $this->visit($ctx->expr(0));
+            $regVal = $valor['reg'];
+
+            $rInferior = $this->visit($ctx->expr(1));
+            $regInferior = $rInferior['reg'];
+
+            $rSuperior = $this->visit($ctx->expr(2));
+            $regSuperior = $rSuperior['reg'];
+
+            $resReg = $this->getRegister();
+            $tempInf = $this->getRegister();
+            $tempSup = $this->getRegister();
+
+            $isNot = ($ctx->NOT() !== null);
+
+            $this->textSection .= "    cmp w$regVal, w$regInferior\n";
+            $this->textSection .= "    cset w$tempInf, ge\n";
+            
+            $this->textSection .= "    cmp w$regVal, w$regSuperior\n";
+            $this->textSection .= "    cset w$tempSup, le\n";
+
+            $this->textSection .= "    and w$resReg, w$tempInf, w$tempSup\n";
+            
+            if($isNot){
+                $this->textSection .= "    eor w$resReg, w$resReg, #1\n";
+            }
+
+            return ["type" => "bool" , "reg" => $resReg];
         }
 
         //EXPRESIONES AGRUPADAS

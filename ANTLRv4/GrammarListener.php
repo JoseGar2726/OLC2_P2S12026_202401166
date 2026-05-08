@@ -550,6 +550,18 @@ interface GrammarListener extends ParseTreeListener {
 	 */
 	public function exitToExpr(Context\ToExprContext $context): void;
 	/**
+	 * Enter a parse tree produced by the `ExpresionModificacion`
+	 * labeled alternative in {@see GrammarParser::relExpr()}.
+	 * @param $context The parse tree.
+	 */
+	public function enterExpresionModificacion(Context\ExpresionModificacionContext $context): void;
+	/**
+	 * Exit a parse tree produced by the `ExpresionModificacion` labeled alternative
+	 * in {@see GrammarParser::relExpr()}.
+	 * @param $context The parse tree.
+	 */
+	public function exitExpresionModificacion(Context\ExpresionModificacionContext $context): void;
+	/**
 	 * Enter a parse tree produced by the `RelationalExpresion`
 	 * labeled alternative in {@see GrammarParser::relExpr()}.
 	 * @param $context The parse tree.

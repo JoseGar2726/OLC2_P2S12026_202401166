@@ -165,6 +165,7 @@ logExpr
 
 relExpr
     : relExpr op=(LE | GE | EQUAL | NEQUAL | LESS | GREATER) expr #RelationalExpresion
+    | expr NOT? IN LCOR expr RANGO expr RCOR   #ExpresionModificacion
     | expr #ToExpr
     ;
 
@@ -247,6 +248,9 @@ LEN: 'len';
 NOW: 'now';
 SUBSTR: 'substr';
 TYPEOF: 'typeOf';
+IN: 'in';
+NOT: 'not';
+RANGO: '..';
 
 INT_T : 'int' | 'int32';
 FLOAT_T : 'float' | 'float32';

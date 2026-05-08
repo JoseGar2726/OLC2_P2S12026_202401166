@@ -671,6 +671,19 @@ class GrammarBaseListener implements GrammarListener
 	 *
 	 * The default implementation does nothing.
 	 */
+	public function enterExpresionModificacion(Context\ExpresionModificacionContext $context): void {}
+
+	/**
+	 * {@inheritdoc}
+	 *
+	 * The default implementation does nothing.
+	 */
+	public function exitExpresionModificacion(Context\ExpresionModificacionContext $context): void {}
+	/**
+	 * {@inheritdoc}
+	 *
+	 * The default implementation does nothing.
+	 */
 	public function enterRelationalExpresion(Context\RelationalExpresionContext $context): void {}
 
 	/**

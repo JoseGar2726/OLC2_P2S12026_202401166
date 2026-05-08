@@ -481,6 +481,16 @@ interface GrammarVisitor extends ParseTreeVisitor
 	public function visitToExpr(Context\ToExprContext $context);
 
 	/**
+	 * Visit a parse tree produced by the `ExpresionModificacion` labeled alternative
+	 * in {@see GrammarParser::relExpr()}.
+	 *
+	 * @param Context\ExpresionModificacionContext $context The parse tree.
+	 *
+	 * @return mixed The visitor result.
+	 */
+	public function visitExpresionModificacion(Context\ExpresionModificacionContext $context);
+
+	/**
 	 * Visit a parse tree produced by the `RelationalExpresion` labeled alternative
 	 * in {@see GrammarParser::relExpr()}.
 	 *
